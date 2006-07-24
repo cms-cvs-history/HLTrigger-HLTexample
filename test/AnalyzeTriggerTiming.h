@@ -22,7 +22,7 @@ class AnalyzeTriggerTiming
   AnalyzeTriggerTiming(unsigned NBINS, double Xlow, double Xmax)
     : tot_time(0)
   {
-    Nbins = NBINS; xlow = Xlow; xmax = xlow;
+    Nbins = NBINS; xlow = Xlow; xmax = Xmax;
     moduleTimes.clear();
     tot_time = createHistogram("full_event");    
   }
