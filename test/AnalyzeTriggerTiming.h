@@ -40,12 +40,10 @@ class AnalyzeTriggerTiming
   void analyze( const edm::EventTime & evtTime)
   {
     unsigned size = evtTime.size();
-    // std::cout << " ****** new event! " << std::endl;
     for(unsigned int i = 0; i != size; ++i)
       { // loop over all modules of event
 
 	std::string module_name = evtTime.name(i);
-	//	std::cout << " found module " << module_name << std::endl;
 	TH1F * tmp = 0;
 	cIt it = moduleTimes.find(module_name);
 	if(it != moduleTimes.end())
@@ -54,9 +52,14 @@ class AnalyzeTriggerTiming
 	  {
 	    // first time module is encountered; create new histogram
 	    tmp = createHistogram(module_name);
+
 	    // add entry to map
-	    moduleTimes[module_name] = tmp;
-	    //  std::cout << " std::moduleTimes.size() = " <<  moduleTimes.size() << std::endl;
+
+	    /* this for some reason creates duplicate entries in moduleTimes... */
+	    //	    moduleTimes[module_name] = tmp;
+
+	    moduleTimes[module_name.c_str()] = tmp;
+
 	  }
 
 	tmp->Fill(evtTime.time(i)*secs2msecs);
