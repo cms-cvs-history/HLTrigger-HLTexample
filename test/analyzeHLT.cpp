@@ -58,16 +58,19 @@ int main(int argc, char ** argv)
 
   TBranch * TBevtTime = 0;
   TBranch * TBtrigRes = 0;
-  TBranch * TBevtid = events->GetBranch("id_");
+  //  TBranch * TBevtid = events->GetBranch("id_");
   
   // structure holding the timing info
   edm::EventTime evtTime;
   // structure holding the trigger decision
   edm::TriggerResults trigRes;
+
+#if 0
   // structure holding event information
   edm::EventID evtid;
 
   TBevtid->SetAddress((void *)&evtid);
+#endif
 
   AnalyzeTriggerResults * tr = 0;
   AnalyzeTriggerTiming * tt = 0;
