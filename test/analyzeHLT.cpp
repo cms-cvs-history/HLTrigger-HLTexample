@@ -12,7 +12,7 @@
 // needed for trigger studies
 #include "DataFormats/Common/interface/TriggerResults.h"
 // needed for event-id info
-#include "DataFormats/Common/interface/EventID.h"
+#include "DataFormats/Common/interface/EventAux.h"
 //
 #include "FWCore/FWLite/src/AutoLibraryLoader.h"
 
@@ -21,6 +21,7 @@
 
 using std::cout; using std::endl; using std::string;
 
+#define PRINT_EVTRUN_NO 0
 
 // Christos Leonidopoulos, July 2006
 
@@ -58,18 +59,20 @@ int main(int argc, char ** argv)
 
   TBranch * TBevtTime = 0;
   TBranch * TBtrigRes = 0;
-  //  TBranch * TBevtid = events->GetBranch("id_");
-  
+  TBranch * TBevtAux = events->GetBranch("EventAux");
+  assert(TBevtAux);
+  //  std::cout << " TBevtAux = " << int(TBevtAux) << std::endl;
+
   // structure holding the timing info
   edm::EventTime evtTime;
   // structure holding the trigger decision
   edm::TriggerResults trigRes;
 
-#if 0
+#if PRINT_EVTRUN_NO
   // structure holding event information
-  edm::EventID evtid;
+  edm::EventAux * evtAux = new edm::EventAux;
 
-  TBevtid->SetAddress((void *)&evtid);
+  TBevtAux->SetAddress((void *)&evtAux);
 #endif
 
   AnalyzeTriggerResults * tr = 0;
@@ -96,10 +99,10 @@ int main(int argc, char ** argv)
   for(int i = 0; i != n_evts; ++i)
     {
 
-#if 0 
-      TBevtid->GetEntry(i);
-      cout << " Run # = " << evtid.run() 
-	   << " event # = " << evtid.event() 
+#if PRINT_EVTRUN_NO
+      TBevtAux->GetEntry(i);
+      cout << " Run # = " << evtAux->id().run() 
+	   << " event # = " << evtAux->id().event() 
 	   << " entry # = " << i << "\n";
 #endif
 
@@ -130,6 +133,10 @@ int main(int argc, char ** argv)
       tr->getResults();
       delete tr;
     }
-  
+
+#if PRINT_EVTRUN_NO
+  delete evtAux;
+#endif
+ 
   return 0;
 }
