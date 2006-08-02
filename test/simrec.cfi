@@ -1,0 +1,16 @@
+// Fast dummy simulation and reconstruction, 
+// producing Candidate Collections
+
+// do jets and Met based on MC truth
+
+include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
+
+// do the rest (g/e/m, and putting MC-truth jets/met as reco'ed jets/met)
+
+        module simrec = HLTProdCand {
+		InputTag jetsTag = GenJetMcone5
+		InputTag metsTag = genMet
+	}
+
+sequence doSimRec = {caloJetMetGen, simrec}
+//
