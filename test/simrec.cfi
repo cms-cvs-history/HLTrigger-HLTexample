@@ -3,12 +3,12 @@
 
 // do jets and Met based on MC truth
 
-include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
+include "Configuration/JetMET/data/calorimetry-jetmet-gen.cff"
 
 // do the rest (g/e/m, and putting MC-truth jets/met as reco'ed jets/met)
 
         module simrec = HLTProdCand {
-		InputTag jetsTag = GenJetMcone5
+		InputTag jetsTag = midPointCone5GenJets
 		InputTag metsTag = genMet
 	}
 
