@@ -3,8 +3,8 @@
 
 // do jets and Met based on MC truth
 
-// include "Configuration/JetMET/data/calorimetry-jetmet-gen.cff"
-include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
+include "Configuration/JetMET/data/calorimetry-jetmet-gen.cff"
+// include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
 replace genCandidates.verbose = false
 replace genCandidates.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
 
