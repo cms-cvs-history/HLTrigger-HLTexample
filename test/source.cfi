@@ -15,8 +15,8 @@ include "SimGeneral/HepPDTESSource/data/pdt.cfi"
       untracked PSet  PGunParameters = {
          # you can request more than 1 particle
          untracked vint32 PartID = {-11,11,-12,12,-13,13,-14,14,-15,15,-16,16,22,22,111,111,-211,211}
-         untracked double MinEta = -3.5
-         untracked double MaxEta =  3.5
+         untracked double MinEta = -5.0
+         untracked double MaxEta =  5.0
          #
          # phi must be given in radians
          #
