@@ -1,20 +1,3 @@
-
-// fast simulation/reconstruction based on MC truth
-
-// jets using jet algorithm on MC particles:
-include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
-replace genCandidates.verbose = false
-replace genCandidates.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
-
-// do the rest (g/e/m/t, and putting MC-truth jets as reco'ed jets)
-
-	module simrec = HLTProdCand {
-		InputTag jetsTag = GenJetMcone5
-	}
-
-sequence doSimRec = {caloJetMetGen, simrec}
-
-
 // HLT filter modules
 
 // Single photon
@@ -146,4 +129,5 @@ sequence doSimRec = {caloJetMetGen, simrec}
 	untracked PSet options = {
 		untracked bool wantSummary = true  # default is false
 		untracked bool makeTriggerResults = true 
+//		vstring listOfTriggers = {"p1","p2","p3","p4","p5"}
 	}
