@@ -8,11 +8,14 @@
 	replace genCandidates.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
 
 
+// Level-1: module l1extramctruth = L1ExtraFromMCTruthProd
+include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extramctruth.cfi"
+
 // Put generator-level jets/MET as reco'ed Jets/MET, add directly g,e,m,t
 	module simrec = HLTProdCand {
 		InputTag jetsTag = midPointCone5GenJets
 		InputTag metsTag = genMet
 	}
 
-sequence doSimRec = {caloJetMetGen, simrec}
+sequence doSimRec = {caloJetMetGen, l1extramctruth, simrec}
 //
