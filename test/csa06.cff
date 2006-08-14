@@ -1,3 +1,20 @@
+
+// fast simulation/reconstruction based on MC truth
+
+// jets using jet algorithm on MC particles:
+include "Configuration/Applications/data/reco-application-calorimetry-jetmet-gen.cff"
+replace genCandidates.verbose = false
+replace genCandidates.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
+
+// do the rest (g/e/m, and putting MC-truth jets as reco'ed jets)
+
+	module simrec = HLTProdCand {
+		InputTag jetsTag = GenJetMcone5
+	}
+
+sequence doSimRec = {caloJetMetGen, simrec}
+
+
 // HLT filter modules
 
 // Single photon
@@ -9,15 +26,9 @@
 	}
 
 // Double photon
-	module hlt2g1 = HLT1Photon {
+	module hlt2g = HLT1Photon {
 		InputTag inputTag = simrec
 		double MinPt = 30.0
-		double MaxEta= 2.4
-		int32  MinN  = 1
-	}
-	module hlt2g2 = HLT1Photon {
-		InputTag inputTag = simrec
-		double MinPt = 20.0
 		double MaxEta= 2.4
 		int32  MinN  = 2
 	}
@@ -57,7 +68,7 @@
 // Single tau
 	module hlt1t = HLT1Tau  {
 		InputTag inputTag = simrec:taus
-		double MinPt = 100.0
+		double MinPt = 65.0
 		double MaxEta= 2.4
 		int32  MinN  = 1
 	}
@@ -65,7 +76,7 @@
 // Double tau
 	module hlt2t = HLT1Tau  {
 		InputTag inputTag = simrec:taus
-		double MinPt = 60.0
+		double MinPt = 35.0
 		double MaxEta= 2.4
 		int32  MinN  = 2
 	}
@@ -106,7 +117,7 @@
 // Actual HLT trigger paths
 
 	path p1g  = {doSimRec, hlt1g}
-	path p2g  = {doSimRec, hlt2g1, hlt2g2}
+	path p2g  = {doSimRec, hlt2g}
 	path p1e  = {doSimRec, hlt1e}
 	path p2e  = {doSimRec, hlt2e}
 	path p1m  = {doSimRec, hlt1m}
@@ -129,5 +140,4 @@
 	untracked PSet options = {
 		untracked bool wantSummary = true  # default is false
 		untracked bool makeTriggerResults = true 
-//		vstring listOfTriggers = {"p1","p2","p3","p4","p5"}
 	}
