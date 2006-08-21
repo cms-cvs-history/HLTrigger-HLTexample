@@ -1,7 +1,0 @@
-
-    module hltb = HLTJetTag {
-      InputTag JetTag   = trackCounting:TrackCounting
-      double   MinTag   = 2.0
-      double   MaxTag   = 99999.
-      int32    MinN     = 1
-    }
