@@ -2,5 +2,5 @@
 		vstring L1Seeds = { }
 		bool andOr      = true
 		bool byName     = true
-		InputTag L1ExtraTag = XXX
+		InputTag L1ExtraTag = l1extramctruth
 }
