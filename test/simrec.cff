@@ -1,17 +1,14 @@
 // Generator-level based fast simulation and reconstruction
 // producing Candidate Collections
 
+// Vertex smearing
+include "Configuration/StandardSequences/data/VtxSmearedGauss.cff"
 
-// Create generator-level jets and MET:
-	include "Configuration/JetMET/data/calorimetry-jetmet-gen.cff"
-	replace genCandidates.verbose = false
-	replace genCandidates.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
-	replace genCandidatesForMET.verbose = false
-	replace genCandidatesForMET.excludeList = {"nu(e)0","nu(mu)0","nu(tau)0","mu-","K(L)0","n0"}
+// Level-1 Trigger
+include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
+replace genCandidates.verbose = false
+replace genCandidatesForMET.verbose = false
 
-
-// Level-1: module l1extramctruth = L1ExtraFromMCTruthProd
-include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extramctruth.cfi"
 
 // Put generator-level jets/MET as reco'ed Jets/MET, add directly g,e,m,t
 	module simrec = HLTProdCand {
@@ -19,5 +16,5 @@ include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extramctruth.cfi"
 		InputTag metsTag = genMet
 	}
 
-sequence doSimRec = {caloJetMetGen, l1extramctruth, simrec}
+sequence doSimRec = {VtxSmeared, l1extraGen, simrec}
 //

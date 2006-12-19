@@ -1,7 +1,13 @@
 //
-   service = RandomNumberGeneratorService {
-      untracked uint32 sourceSeed = 98765
-   }
+	service = RandomNumberGeneratorService {
+	untracked uint32 sourceSeed = 98765
+		PSet moduleSeeds =
+		{
+			untracked uint32 VtxSmeared = 98765432
+			untracked uint32 g4SimHits  = 11
+			untracked uint32 mix        = 12345
+		}
+	}
 
 include "SimGeneral/HepPDTESSource/data/pdt.cfi"
 
