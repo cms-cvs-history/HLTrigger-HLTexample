@@ -9,7 +9,7 @@
 		}
 	}
 
-include "SimGeneral/HepPDTESSource/data/pdt.cfi"
+include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
 
 //
 // Particle Gun as source
