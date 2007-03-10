@@ -14,7 +14,7 @@
 // needed for event-id info
 #include "#include DataFormats/Provenance/interface/EventAuxiliary.h"
 //
-#include "FWCore/FWLite/src/AutoLibraryLoader.h"
+#include "FWCore/FWLite/interface/AutoLibraryLoader.h"
 
 #include "HLTrigger/HLTexample/test/AnalyzeTriggerResults.h"
 #include "HLTrigger/HLTexample/test/AnalyzeTriggerTiming.h"
