@@ -12,7 +12,7 @@
 // needed for trigger studies
 #include "DataFormats/Common/interface/TriggerResults.h"
 // needed for event-id info
-#include "#include DataFormats/Provenance/interface/EventAuxiliary.h"
+#include "DataFormats/Provenance/interface/EventAuxiliary.h"
 //
 #include "FWCore/FWLite/interface/AutoLibraryLoader.h"
 
