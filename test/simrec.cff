@@ -17,16 +17,18 @@ replace l1extramctruth.jetSource = genJetsL1ExtraMCTruth
 		InputTag metsTag = genMet
 	}
 
+// Need to reproduce here with a change:
 // include "RecoMET/Configuration/data/GenMETParticles.cff"
+//
   include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidatesFast.cfi"
   include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
-// include "RecoJets/Configuration/data/GenJetParticles.cff"
+//include "RecoJets/Configuration/data/GenJetParticles.cff"
 
   module genCandidatesForMET = GenParticleCandidateSelector
   {
       string src = "genParticleCandidates"
       bool stableOnly = true
-      untracked bool verbose = true
+      untracked bool verbose = false
       vstring excludeList = {"nu_e", "nu_mu", "nu_tau", "mu-",
                           "~chi_10", 
                           "~nu_eR", "~nu_muR", "~nu_tauR", 
