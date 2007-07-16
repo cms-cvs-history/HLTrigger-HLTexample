@@ -5,19 +5,41 @@
 include "Configuration/StandardSequences/data/VtxSmearedGauss.cff"
 
 // Level-1 Trigger
-// include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
-include "HLTrigger/HLTexample/test/l1extra-from-mctruth.cff"
+include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
 // replace genCandidates.verbose = false
 // replace genCandidatesForMET.verbose = false
-
+replace l1extramctruth.hepmcSource = "source"
+replace l1extramctruth.jetSource = genJetsL1ExtraMCTruth
 
 // Put generator-level jets/MET as reco'ed Jets/MET, add directly g,e,m,t
 	module simrec = HLTProdCand {
-		InputTag jetsTag = midPointCone5GenJets
+		InputTag jetsTag = genJetsL1ExtraMCTruth
 		InputTag metsTag = genMet
 	}
 
-include "RecoMET/Configuration/data/RecoMET.cff"
+// include "RecoMET/Configuration/data/GenMETParticles.cff"
+  include "PhysicsTools/HepMCCandAlgos/data/genParticleCandidatesFast.cfi"
+  include "SimGeneral/HepPDTESSource/data/pythiapdt.cfi"
+// include "RecoJets/Configuration/data/GenJetParticles.cff"
 
-sequence doSimRec = {VtxSmeared, l1extraGen, genCandidatesForMET, genMet, simrec}
+  module genCandidatesForMET = GenParticleCandidateSelector
+  {
+      string src = "genParticleCandidates"
+      bool stableOnly = true
+      untracked bool verbose = true
+      vstring excludeList = {"nu_e", "nu_mu", "nu_tau", "mu-",
+                          "~chi_10", 
+                          "~nu_eR", "~nu_muR", "~nu_tauR", 
+			  "Graviton", "~Gravitino", 
+                          "nu_Re", "nu_Rmu", "nu_Rtau", 
+                          "nu*_e0", "Graviton*"
+                         }
+      vstring includeList = {}
+  }
+
+sequence genMETParticles = { genParticleCandidates, genParticlesAllStableNoNuBSM & genCandidatesForMET }
+//
+include "RecoMET/Configuration/data/RecoGenMET.cff"
+
+sequence doSimRec = {VtxSmeared & l1extraGen & (genMETParticles, recoGenMET) & simrec}
 //
