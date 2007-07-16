@@ -5,7 +5,7 @@
 include "Configuration/StandardSequences/data/VtxSmearedGauss.cff"
 
 // Level-1 Trigger
-include "L1Trigger/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
+include "L1TriggerOffline/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
 // replace genCandidates.verbose = false
 // replace genCandidatesForMET.verbose = false
 replace l1extramctruth.hepmcSource = "source"
