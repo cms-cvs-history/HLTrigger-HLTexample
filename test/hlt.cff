@@ -2,7 +2,7 @@
 
 // Single photon
 	module hlt1g = HLT1Photon {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:photons
 		double MinPt = 80.0
 		double MaxEta= 2.4
 		int32  MinN  = 1
@@ -10,13 +10,13 @@
 
 // Double photon
 	module hlt2g1 = HLT1Photon {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:photons
 		double MinPt = 30.0
 		double MaxEta= 2.4
 		int32  MinN  = 1
 	}
 	module hlt2g2 = HLT1Photon {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:photons
 		double MinPt = 20.0
 		double MaxEta= 2.4
 		int32  MinN  = 2
@@ -24,7 +24,7 @@
 
 // Single electron
 	module hlt1e = HLT1Electron {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:electrons
 		double MinPt = 26.0
 		double MaxEta= 2.4
 		int32  MinN  = 1
@@ -32,7 +32,7 @@
 
 // Double electron
 	module hlt2e = HLT1Electron {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:electrons
 		double MinPt = 12.0
 		double MaxEta= 2.4
 		int32  MinN  = 2
@@ -40,7 +40,7 @@
 
 // Single muon
 	module hlt1m = HLT1Muon {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:muons
 		double MinPt = 19.0
 		double MaxEta= 2.0
 		int32  MinN  = 1
@@ -48,7 +48,7 @@
 
 // Double muon
 	module hlt2m = HLT1Muon {
-		InputTag inputTag = simrec
+		InputTag inputTag = simrec:muons
 		double MinPt = 7.0
 		double MaxEta= 2.0
 		int32  MinN  = 2
