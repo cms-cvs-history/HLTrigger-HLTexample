@@ -5,11 +5,11 @@
 include "Configuration/StandardSequences/data/VtxSmearedGauss.cff"
 
 // Level-1 Trigger
-include "L1TriggerOffline/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
+// include "L1TriggerOffline/L1ExtraFromMCTruthProd/data/l1extra-from-mctruth.cff"
 // replace genCandidates.verbose = false
 // replace genCandidatesForMET.verbose = false
-replace l1extramctruth.hepmcSource = "source"
-replace l1extramctruth.jetSource = genJetsL1ExtraMCTruth
+// replace l1extramctruth.hepmcSource = "source"
+// replace l1extramctruth.jetSource = genJetsL1ExtraMCTruth
 
 // Put generator-level jets/MET as reco'ed Jets/MET, add directly g,e,m,t
 	module simrec = HLTProdCand {
